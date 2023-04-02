@@ -1,0 +1,26 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-eventosdeportivos-staging-15921-authRole",
+      "UnauthRoleArn": "arn:aws:iam::269258772555:role/amplify-eventosdeportivos-staging-15921-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::269258772555:role/amplify-eventosdeportivos-staging-15921-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-eventosdeportivos-staging-15921-deployment",
+      "UnauthRoleName": "amplify-eventosdeportivos-staging-15921-unauthRole",
+      "StackName": "amplify-eventosdeportivos-staging-15921",
+      "StackId": "arn:aws:cloudformation:us-east-1:269258772555:stack/amplify-eventosdeportivos-staging-15921/2d15ce40-bee7-11ed-b82c-12d25b15c503",
+      "AmplifyAppId": "d3u7u7vhszeshc"
+    },
+    "categories": {
+      "auth": {
+        "EventosDeportivos": {}
+      },
+      "storage": {
+        "s3eventosdeportivosstoragea058873a": {}
+      },
+      "api": {
+        "EventosDeportivos": {}
+      }
+    }
+  }
+}

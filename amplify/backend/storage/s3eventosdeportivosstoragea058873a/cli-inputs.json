@@ -1,0 +1,14 @@
+{
+  "resourceName": "s3eventosdeportivosstoragea058873a",
+  "bucketName": "eventos-deportivos-storage-a058873a",
+  "policyUUID": "7118a20b",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}
