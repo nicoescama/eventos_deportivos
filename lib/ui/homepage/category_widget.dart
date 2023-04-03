@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:eventos_deportivos/common/utils/styleguide.dart';
-import 'package:provider/provider.dart';
 
-import '../../app_state.dart';
-import 'package:eventos_deportivos/models/categoria.dart';
+import 'package:eventos_deportivos/models/Categoria.dart';
 
 class CategoryWidget extends StatelessWidget {
   final Categoria categoria;
@@ -12,13 +10,14 @@ class CategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appState = Provider.of<AppState>(context);
-    final isSelected = appState.selectedCategoryId == categoria.id;
+    //final appState = Provider.of<AppState>(context);
+    //final isSelected = appState.selectedCategoryId == categoria.id;
+    final isSelected = false;
 
     return GestureDetector(
       onTap: () {
         if (!isSelected) {
-          appState.updateCategoryId(categoria.id);
+          //appState.updateCategoryId(categoria.id);
         }
       },
       child: Container(

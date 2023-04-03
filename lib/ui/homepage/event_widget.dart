@@ -3,7 +3,7 @@ import 'package:eventos_deportivos/common/utils/styleguide.dart';
 import 'package:intl/date_symbol_data_file.dart';
 import 'package:intl/intl.dart';
 
-import '../../models/event.dart';
+import 'package:eventos_deportivos/models/Event.dart';
 
 class EventWidget extends StatelessWidget {
   final Event event;
@@ -29,7 +29,7 @@ class EventWidget extends StatelessWidget {
               child: Image.asset(
                 //event.imagePath,
                 "assets/event_images/5_km_downtown_run.jpeg",
-                height: 150,
+                height: 100,
                 fit: BoxFit.fitWidth,
               ),
             ),
@@ -47,7 +47,7 @@ class EventWidget extends StatelessWidget {
                           style: eventTitleTextStyle,
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 5,
                         ),
                         FittedBox(
                           child: Row(

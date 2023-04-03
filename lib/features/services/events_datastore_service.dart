@@ -3,6 +3,8 @@ import 'package:eventos_deportivos/models/Event.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:eventos_deportivos/models/Categoria.dart';
+
 final eventsDataStoreServiceProvider = Provider<EventsDataStoreService>((ref) {
   final service = EventsDataStoreService();
   return service;
@@ -12,13 +14,18 @@ class EventsDataStoreService {
   EventsDataStoreService();
 
   Stream<List<Event>> listenToEvents() {
+    debugPrint("entra a listenToEvents");
+    var prueba = Amplify.DataStore.observeQuery(Event.classType);
+      //Event.classType);
+    debugPrint(prueba.toString());
+
     return Amplify.DataStore.observeQuery(
       Event.classType,
-      sortBy: [Event.DATE.ascending()],
+      //sortBy: [Event.DATE.ascending()],
     )
         .map((event) => event.items
-        .where((element) =>
-        element.date.getDateTimeInUtc().isBefore(DateTime.now()))
+        //.where((element) =>
+        //element.date.getDateTimeInUtc().isBefore(DateTime.now()))
         .toList())
         .handleError(
           (error) {

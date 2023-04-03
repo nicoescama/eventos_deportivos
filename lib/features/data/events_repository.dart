@@ -1,5 +1,6 @@
 import 'package:eventos_deportivos/features/services/events_datastore_service.dart';
 import 'package:eventos_deportivos/models/Event.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final eventsRepositoryProvider = Provider<EventsRepository>((ref) {
@@ -8,21 +9,21 @@ final eventsRepositoryProvider = Provider<EventsRepository>((ref) {
   return EventsRepository(eventsDataStoreService);
 });
 
-final tripsListStreamProvider = StreamProvider.autoDispose<List<Event?>>((ref) {
-  final tripsRepository = ref.watch(eventsRepositoryProvider);
-  return tripsRepository.getTrips();
+final eventsListStreamProvider = StreamProvider.autoDispose<List<Event?>>((ref) {
+  final eventsRepository = ref.watch(eventsRepositoryProvider);
+  return eventsRepository.getPastEvents();
 });
 
-final pastTripsListStreamProvider =
+final pastEventsListStreamProvider =
 StreamProvider.autoDispose<List<Event?>>((ref) {
-  final tripsRepository = ref.watch(eventsRepositoryProvider);
-  return tripsRepository.getPastTrips();
+  final eventsRepository = ref.watch(eventsRepositoryProvider);
+  return eventsRepository.getPastEvents();
 });
 
-final tripProvider =
+final eventProvider =
 StreamProvider.autoDispose.family<Event?, String>((ref, id) {
-  final tripsRepository = ref.watch(eventsRepositoryProvider);
-  return tripsRepository.get(id);
+  final eventsRepository = ref.watch(eventsRepositoryProvider);
+  return eventsRepository.get(id);
 });
 
 class EventsRepository {
@@ -30,11 +31,11 @@ class EventsRepository {
 
   final EventsDataStoreService eventsDataStoreService;
 
-  Stream<List<Event>> getTrips() {
+  Stream<List<Event>> getEvents() {
     return eventsDataStoreService.listenToEvents();
   }
 
-  Stream<List<Event>> getPastTrips() {
+  Stream<List<Event>> getPastEvents() {
     return eventsDataStoreService.listenToPastEvents();
   }
 

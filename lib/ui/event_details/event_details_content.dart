@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import 'package:eventos_deportivos/models/event.dart';
+import 'package:eventos_deportivos/models/Event.dart';
 import '../../common/utils/styleguide.dart';
 
 class EventDetailsContent extends StatelessWidget {

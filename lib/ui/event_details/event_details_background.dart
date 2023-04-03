@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../models/event.dart';
+import 'package:eventos_deportivos/models/Event.dart';
 import 'package:provider/provider.dart';
 
 class EventDetailsBackground extends StatelessWidget {
