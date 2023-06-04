@@ -1,4 +1,5 @@
 import 'package:amplify_datastore/amplify_datastore.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +18,7 @@ class EventDetailsContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   final screenWidth = MediaQuery.of(context).size.width;
+  final screenHeight = MediaQuery.of(context).size.height;
 
     return SingleChildScrollView(
       child: Column(
@@ -99,10 +101,13 @@ class EventDetailsContent extends StatelessWidget {
           ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Row(
+            child: event.eventImageUrl == null
+                ? Text("No hay imagenes")
+                : Row(
               children: <Widget>[
                 //for (final galleryImagePath in event.galleryImages)
-                for (final galleryImagePath in ["assets/event_images/5_km_downtown_run.jpeg"])
+                //for (final galleryImagePath in ["assets/event_images/5_km_downtown_run.jpeg"])
+                for(final galleryImagePath in [event.eventImageUrl])
                   Container(
                     margin: const EdgeInsets.only(left: 16, right: 16, bottom: 32),
                     child: ClipRRect(
@@ -118,9 +123,17 @@ class EventDetailsContent extends StatelessWidget {
                                 child: Center(
                                   child: Hero(
                                     tag: 'imageHero',
-                                    child: Image.asset(
-                                      galleryImagePath
-                                    ),
+                                    child: Stack(children: [
+                                      const  CircularProgressIndicator(),
+                                      CachedNetworkImage(
+                                        cacheKey: event.eventImageKey,
+                                        imageUrl: galleryImagePath!,
+                                        width: screenWidth,
+                                        height: screenHeight * 0.5,
+                                        //alignment: Alignment.topCenter,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ]),
                                   ),
                                 ),
                               ),
@@ -129,12 +142,17 @@ class EventDetailsContent extends StatelessWidget {
                         },
                         child:Hero(
                         tag: 'imageHero',
-                        child: Image.asset(
-                          galleryImagePath,
-                          width: 180,
-                          height: 180,
-                          fit: BoxFit.cover,
-                        ),
+                        child: Stack(children: [
+                          const  CircularProgressIndicator(),
+                          CachedNetworkImage(
+                            cacheKey: event.eventImageKey,
+                            imageUrl: event.eventImageUrl!,
+                            width: 180,
+                            height: 180,
+                            //alignment: Alignment.topCenter,
+                            fit: BoxFit.cover,
+                          ),
+                        ]),
                       ),
                     ),
                     ),
@@ -142,26 +160,6 @@ class EventDetailsContent extends StatelessWidget {
               ],
             ),
           ),
-         /* SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: <Widget>[
-                for (final guest in guests)
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: ClipOval(
-                      child: Image.asset(
-                        guest.imagePath,
-                        width: 90,
-                        height: 90,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-          ),*/
-          //if (event.description.isNotEmpty) Padding(
             Padding(
             padding: const EdgeInsets.all(16),
             child: Text(event.description!, style: punchLine1TextStyle,),

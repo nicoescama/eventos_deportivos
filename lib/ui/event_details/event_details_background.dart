@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:eventos_deportivos/models/Event.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +14,18 @@ class EventDetailsBackground extends StatelessWidget {
       alignment: Alignment.topCenter,
       child: ClipPath(
         clipper: ImageClipper(),
-        child: Image.asset(
+        child: event.eventImageUrl != null
+            ? Stack(children: [
+          const  CircularProgressIndicator(),
+          CachedNetworkImage(
+            cacheKey: event.eventImageKey,
+            imageUrl: event.eventImageUrl!,
+            width: screenWidth,
+            height: screenHeight * 0.5,
+            //alignment: Alignment.topCenter,
+            fit: BoxFit.cover,
+          ),
+        ]):Image.asset(
           //event.imagePath,
           "assets/guest_images/guest1.jpg",
           fit: BoxFit.cover,

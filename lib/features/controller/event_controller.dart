@@ -19,7 +19,7 @@ class EventController {
     final fileKey = await ref.read(storageServiceProvider).uploadFile(file);
     if (fileKey != null) {
       final imageUrl =
-      await ref.read(storageServiceProvider).getImageUrl(fileKey);
+        await ref.read(storageServiceProvider).getImageUrl(fileKey);
       return [fileKey,imageUrl];
       //final updatedEvent = event.copyWith(eventImageKey: fileKey, eventImageUrl: imageUrl);
       //await ref.read(eventsRepositoryProvider).update(updatedEvent);

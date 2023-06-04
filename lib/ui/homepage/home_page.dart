@@ -1,24 +1,8 @@
-import 'package:amplify_datastore/amplify_datastore.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:eventos_deportivos/ui/add_event/add_event_page.dart';
 import 'package:eventos_deportivos/ui/homepage/events_list_page.dart';
 import 'package:flutter/material.dart';
-import 'package:eventos_deportivos/models/Categoria.dart';
-import 'package:eventos_deportivos/models/Event.dart';
-import 'package:eventos_deportivos/common/utils/styleguide.dart';
-import 'package:eventos_deportivos/ui/event_details/event_details_page.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:provider/provider.dart';
-
-//import 'package:eventos_deportivos/app_state.dart';
-import 'package:eventos_deportivos/features/data/events_repository.dart';
 import 'package:eventos_deportivos/common/navigation/routes.dart';
-import 'category_widget.dart';
-import 'event_widget.dart';
-import 'home_page_background.dart';
-
-import 'package:amplify_authenticator/amplify_authenticator.dart';
 
 class HomePage extends StatelessWidget  {
 
@@ -31,7 +15,7 @@ class HomePage extends StatelessWidget  {
 
   @override
   Widget build(BuildContext context) {
-
+    //Amplify.DataStore.clear();
     final router = GoRouter(
       routes: [
         GoRoute(
@@ -55,7 +39,15 @@ class HomePage extends StatelessWidget  {
         ),
       ),
     );
-    return Authenticator(
+    return MaterialApp.router(
+      routeInformationParser: router.routeInformationParser,
+      routeInformationProvider: router.routeInformationProvider,
+      routerDelegate: router.routerDelegate,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+    );
+     /* Authenticator(
       child: MaterialApp.router(
         routeInformationParser: router.routeInformationParser,
         routeInformationProvider: router.routeInformationProvider,
@@ -65,7 +57,7 @@ class HomePage extends StatelessWidget  {
           primarySwatch: Colors.blue,
         ),
       ),
-    );
+    );*/
   }
 }
    /*

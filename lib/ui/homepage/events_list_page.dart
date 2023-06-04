@@ -1,21 +1,12 @@
 import 'package:amplify_authenticator/amplify_authenticator.dart';
-import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:eventos_deportivos/ui/add_event/add_event_page.dart';
 import 'package:eventos_deportivos/ui/homepage/event_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:eventos_deportivos/features/data/events_repository.dart';
 import 'package:eventos_deportivos/ui/event_details/event_details_page.dart';
-
 import 'package:eventos_deportivos/models/Categoria.dart';
-
 import 'category_widget.dart';
-
-//import 'package:amplify_trips_planner/features/trip/data/trips_repository.dart';
-//import 'package:amplify_trips_planner/features/trip/ui/trips_list/add_trip_bottomsheet.dart';
-//import 'package:amplify_trips_planner/features/trip/ui/trips_list/trip_card.dart';
-//import 'package:amplify_trips_planner/common/utils/colors.dart' as constants;
 
 class EventsListPage extends HookConsumerWidget {
   const EventsListPage({
@@ -73,7 +64,7 @@ class EventsListPage extends HookConsumerWidget {
           eventsListValue.when(
               data: (events) => events.isEmpty
                   ? const Center(
-                child: Text('No Trips'),
+                child: Text('Aún no han cargado los eventos'),
               )
                   : Expanded(
               child: Column(

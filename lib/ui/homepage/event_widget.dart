@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:eventos_deportivos/common/utils/styleguide.dart';
 import 'package:intl/date_symbol_data_file.dart';
@@ -26,7 +27,19 @@ class EventWidget extends StatelessWidget {
               borderRadius: BorderRadius.all(
                 Radius.circular(30),
               ),
-              child: Image.asset(
+              child: event.eventImageUrl != null
+                  ? Stack(children: [
+                const Center(child: CircularProgressIndicator()),
+                CachedNetworkImage(
+                  cacheKey: event.eventImageKey,
+                  imageUrl: event.eventImageUrl!,
+                  width: double.maxFinite,
+                  height: 100,
+                  alignment: Alignment.topCenter,
+                  fit: BoxFit.fitWidth,
+                ),
+              ])
+                  :Image.asset(
                 //event.imagePath,
                 "assets/event_images/5_km_downtown_run.jpeg",
                 height: 100,
